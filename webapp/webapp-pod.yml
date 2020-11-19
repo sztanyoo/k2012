@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    run: webserver1
-  name: webserver1
+    run: my-webserver
+  name: my-webserver
 spec:
   containers:
   - image: nginx
     imagePullPolicy: Always
-    name: webserver1
+    name: my-webserver
   restartPolicy: Always
