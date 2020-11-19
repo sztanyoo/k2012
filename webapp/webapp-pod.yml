@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: webserver1
+  name: webserver1
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: Always
+    name: webserver1
+  restartPolicy: Always
