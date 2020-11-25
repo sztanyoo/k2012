@@ -1,5 +1,9 @@
 # Usage: export VULTR_API_KEY=12345678; terraform apply
 
+variable "instance_count" {
+  default = "1"
+}
+
 provider "vultr" {
   rate_limit  = 700
   retry_limit = 3
@@ -7,10 +11,12 @@ provider "vultr" {
 
 
 resource "vultr_server" "kube_server" {
+  count         = "${var.instance_count}"
   plan_id   = "203" # "4096 MB RAM,80 GB SSD,3.00 TB BW"
   region_id = "9" # 24=Paris, 9=Frankfurt
   os_id     = "387"  # 387 for Ubuntu 20.04
-  label     = "k8s"
+  label     = "k8s-${count.index + 1}"
+  hostname  = "k8s-${count.index + 1}"
   enable_ipv6     = false
   auto_backup     = false
   ddos_protection = false
@@ -49,5 +55,5 @@ resource "vultr_ssh_key" "kube_ssh_key" {
 }
 
 output "server_ip" {
-  value = vultr_server.kube_server.main_ip
+  value = vultr_server.kube_server[0].main_ip
 }

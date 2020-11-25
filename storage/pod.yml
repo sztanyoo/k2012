@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: foo-pod
+spec:
+  containers:
+  - image: busybox
+    command:
+      - "sleep"
+      - "3600"
+    name: foo-container
+    volumeMounts:
+    - mountPath: /foo
+      name: foo-data-volume
+  volumes:
+  - name: foo-data-volume
+    persistentVolumeClaim:
+      claimName: foo-claim
