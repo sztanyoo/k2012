@@ -7,8 +7,9 @@ spec:
   containers:
   - image: busybox
     command:
-      - "sleep"
-      - "3600"
+      - "date"
+      - ">>"
+      - "/foo/start.log"
     name: foo-container
     volumeMounts:
     - mountPath: /foo

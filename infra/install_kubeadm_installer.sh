@@ -55,6 +55,11 @@ kubectl apply -f kubernetes-metrics-server
 
 cd /root
 
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+
+
 #helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 #helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 #helm repo update

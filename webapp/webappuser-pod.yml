@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: webuser
+  name: webuser
+spec:
+  containers:
+  - image: busybox
+    command: ["wget"]
+    args: ["-O-", "http://webapp"]
+    imagePullPolicy: IfNotPresent
+    name: webuser
+  restartPolicy: Never
