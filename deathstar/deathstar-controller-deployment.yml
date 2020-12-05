@@ -26,6 +26,6 @@ spec:
             port: 8080
           initialDelaySeconds: 3
           periodSeconds: 3
-        envFrom:
-          - configMapRef:
-              name: deathstar-controller-config
+        #envFrom:
+        #  - configMapRef:
+        #      name: deathstar-controller-config
