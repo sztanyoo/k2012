@@ -7,13 +7,14 @@ spec:
   containers:
   - image: busybox
     command:
-      - "date"
-      - ">>"
-      - "/foo/start.log"
+      - "/bin/sh"
+      - "-c"
+      - "date | tee -a /foo/start.log"
     name: foo-container
     volumeMounts:
     - mountPath: /foo
       name: foo-data-volume
+  restartPolicy: Never
   volumes:
   - name: foo-data-volume
     persistentVolumeClaim:

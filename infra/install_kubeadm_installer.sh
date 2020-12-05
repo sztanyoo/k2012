@@ -7,6 +7,8 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
 
+echo "source /usr/share/bash-completion/bash_completion" >> ~/.bashrc
+
 apt update
 apt install -y docker.io
 systemctl enable docker.service
@@ -35,6 +37,8 @@ echo "Enable scheduling to master"
 kubectl --kubeconfig /etc/kubernetes/admin.conf taint node `hostname` node-role.kubernetes.io/master:NoSchedule-
 
 kubectl --kubeconfig /etc/kubernetes/admin.conf taint node `hostname` node.kubernetes.io/not-ready:NoSchedule-
+
+echo 'source <(kubectl completion bash)' >>~/.bashrc
 
 wall "Bootstrap ready"
 
