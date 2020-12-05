@@ -6,7 +6,7 @@ metadata:
   name: my-webserver
 spec:
   containers:
-  - image: nginx
-    imagePullPolicy: Always
+  - image: nginx:1.18.0
+    imagePullPolicy: IfNotPresent
     name: my-webserver
   restartPolicy: Always
