@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: deathstar-controller-config
+data:
+  TARGET: Somewhere else, definitely not the planet Earth

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deathstar-controller
+  labels:
+    app: deathstar-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deathstar-controller
+  template:
+    metadata:
+      labels:
+        app: deathstar-controller
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: deathstar-controller
+        image: sztanyoo/deathstar-controller:1.0
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        envFrom:
+          - configMapRef:
+              name: deathstar-controller-config
